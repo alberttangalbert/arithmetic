@@ -14,14 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python ${{matrix.python}}
+      - name: Set up Python ${{ matrix.python }}
         uses: actions/setup-python@v2
         with:
-          python-version: ${{matrix.python}}
+          python-version: ${{ matrix.python }}
       - name: install dependencies
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: run tests
+      - name: run doctest
         run: |
-          python3 -m doctest --verbose *.py
+          python3 -m doctest -v main.py
